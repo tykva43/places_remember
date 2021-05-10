@@ -18,10 +18,11 @@ env = environ.Env(
     # set default values
     DJANGO_DEBUG=(bool, False),
     DJANGO_SECRET_KEY=(str, "unsafe-default-key"),
-    DJANGO_ALLOWED_HOSTS=(str, '')
+    DJANGO_ALLOWED_HOSTS=(str, ''),
+    DOCKER_WORKFLOW=(int, 0)
 )
 # reading .env file
-environ.Env.read_env()
+environ.Env.read_env(env_file='.env.dev')
 
 # Build paths inside the project like this: BASE_DIR / 'subdir'.
 BASE_DIR = Path(__file__).resolve().parent.parent
@@ -81,16 +82,29 @@ WSGI_APPLICATION = 'project.wsgi.application'
 # Database
 # https://docs.djangoproject.com/en/3.2/ref/settings/#databases
 
-DATABASES = {
-    'default': {
-        'ENGINE': 'django.db.backends.postgresql',
-        'NAME': env('POSTGRES_DB'),
-        'HOST': env('POSTGRES_HOST'),
-        'PORT': env('POSTGRES_PORT'),
-        'USER': env('POSTGRES_USER'),
-        'PASSWORD': env('POSTGRES_PASSWORD'),
+if env.int('DOCKER_WORKFLOW'):
+    DATABASES = {
+        'default': {
+            'ENGINE': 'django.db.backends.postgresql',
+            'NAME': env('DOCKER_POSTGRES_DB'),
+            'HOST': env('DOCKER_POSTGRES_HOST'),
+            'PORT': env('DOCKER_POSTGRES_PORT'),
+            'USER': env('DOCKER_POSTGRES_USER'),
+            'PASSWORD': env('DOCKER_POSTGRES_PASSWORD'),
+        }
     }
-}
+else:
+    DATABASES = {
+        'default': {
+            'ENGINE': 'django.db.backends.postgresql',
+            'NAME': env('POSTGRES_DB'),
+            'HOST': env('POSTGRES_HOST'),
+            'PORT': env('POSTGRES_PORT'),
+            'USER': env('POSTGRES_USER'),
+            'PASSWORD': env('POSTGRES_PASSWORD'),
+        }
+    }
+
 
 # Password validation
 # https://docs.djangoproject.com/en/3.2/ref/settings/#auth-password-validators
