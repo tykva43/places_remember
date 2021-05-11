@@ -14,6 +14,7 @@ from pathlib import Path
 
 import environ
 import django_on_heroku
+import dj_database_url
 
 
 # django_on_heroku.settings(locals())
@@ -93,7 +94,11 @@ WSGI_APPLICATION = 'project.wsgi.application'
 # Database
 # https://docs.djangoproject.com/en/3.2/ref/settings/#databases
 
-if env.int('DOCKER_WORKFLOW'):
+if env('DATABASE_URL'):
+    DATABASES = {
+        'default': dj_database_url.config(default=os.environ['DATABASE_URL'])
+    }
+elif env.int('DOCKER_WORKFLOW'):
     DATABASES = {
         'default': {
             'ENGINE': 'django.db.backends.postgresql',
