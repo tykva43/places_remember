@@ -13,11 +13,8 @@ import os
 from pathlib import Path
 
 import environ
-import django_on_heroku
 import dj_database_url
 
-
-# django_on_heroku.settings(locals())
 
 env = environ.Env(
     # set default values
@@ -42,8 +39,8 @@ SECRET_KEY = env.str('DJANGO_SECRET_KEY')
 DEBUG = env.bool('DJANGO_DEBUG')
 
 ALLOWED_HOSTS = env('DJANGO_ALLOWED_HOSTS').split()
-# Application definition
 
+# Application definition
 INSTALLED_APPS = [
     'django.contrib.admin',
     'django.contrib.auth',
@@ -129,6 +126,7 @@ SOCIAL_AUTH_POSTGRES_JSONFIELD = True  # use the JSONB-field to store the extrac
 AUTHENTICATION_BACKENDS = (
     'social_core.backends.vk.VKOAuth2',  # backend for VK authentication
     'social_core.backends.facebook.FacebookOAuth2',  # backend for Facebook authentication
+    'django.contrib.auth.backends.ModelBackend'
 )
 
 SOCIAL_AUTH_VK_OAUTH2_SCOPE = ['email']
@@ -155,6 +153,8 @@ AUTH_PASSWORD_VALIDATORS = [
         'NAME': 'django.contrib.auth.password_validation.NumericPasswordValidator',
     },
 ]
+
+# SOCIAL_AUTH_FACEBOOK_API_VERSION = '2.11'
 
 LOGIN_URL = 'login'
 LOGIN_REDIRECT_URL = '/'
@@ -192,6 +192,3 @@ try:
     from .local_settings import *
 except ImportError as e:
     ...
-
-
-
