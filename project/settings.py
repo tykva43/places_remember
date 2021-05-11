@@ -13,6 +13,10 @@ import os
 from pathlib import Path
 
 import environ
+import django_on_heroku
+
+
+# django_on_heroku.settings(locals())
 
 env = environ.Env(
     # set default values
@@ -119,20 +123,20 @@ SOCIAL_AUTH_POSTGRES_JSONFIELD = True  # use the JSONB-field to store the extrac
 # https://docs.djangoproject.com/en/3.2/ref/settings/#auth-password-validators
 
 AUTHENTICATION_BACKENDS = (
-    'social_core.backends.vk.VKOAuth2',
-    # 'social_auth.backends.contrib.vkontakte.VKontakteOAuth2Backend',  # backend for VK authentication
+    'social_core.backends.vk.VKOAuth2',  # backend for VK authentication
+    # 'social_auth.backends.contrib.vkontakte.VKontakteOAuth2Backend',
     'social_core.backends.facebook.FacebookOAuth2',  # backend for Facebook authentication
 )
 
 SOCIAL_AUTH_VK_OAUTH2_SCOPE = ['email']
-# SOCIAL_AUTH_FACEBOOK_SCOPE = ['user_link']
-# SOCIAL_AUTH_FACEBOOK_PROFILE_EXTRA_PARAMS = {
-#   'fields': 'id, name, picture.type(large)'
-# }
-# SOCIAL_AUTH_FACEBOOK_EXTRA_DATA = [
-#     ('name', 'name'),
-#     ('picture', 'picture'),
-# ]
+SOCIAL_AUTH_FACEBOOK_SCOPE = ['user_link']
+SOCIAL_AUTH_FACEBOOK_PROFILE_EXTRA_PARAMS = {
+  'fields': 'id, name, picture.type(large)'
+}
+SOCIAL_AUTH_FACEBOOK_EXTRA_DATA = [
+    ('name', 'name'),
+    ('picture', 'picture'),
+]
 
 AUTH_PASSWORD_VALIDATORS = [
     {
@@ -149,10 +153,12 @@ AUTH_PASSWORD_VALIDATORS = [
     },
 ]
 
-# LOGIN_URL = 'login'
+LOGIN_URL = 'login'
 LOGIN_REDIRECT_URL = '/'
-# LOGOUT_URL = 'logout'
-# LOGOUT_REDIRECT_URL = 'login'
+LOGOUT_URL = 'logout'
+LOGOUT_REDIRECT_URL = 'login'
+SOCIAL_AUTH_FACEBOOK_KEY = '224826339443824'
+SOCIAL_AUTH_FACEBOOK_SECRET = '65832d2e4b31edae904a774627c7d041'
 
 # Internationalization
 # https://docs.djangoproject.com/en/3.2/topics/i18n/
@@ -181,3 +187,5 @@ try:
     from local_settings import *
 except ImportError as e:
     ...
+
+

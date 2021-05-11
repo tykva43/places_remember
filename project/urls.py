@@ -17,5 +17,5 @@ from django.urls import path, include
 
 urlpatterns = [
     path('social', include('social_auth.urls')),
-    path('', include('social_django.urls')),
+    path('social-auth/', include('social_django.urls', namespace="social"))
 ]
