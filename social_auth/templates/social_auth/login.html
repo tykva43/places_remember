@@ -1,38 +1,55 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <title>Title</title>
-    <script>
-  window.fbAsyncInit = function() {
-    FB.init({
-      appId      : '224826339443824',
-      cookie     : true,
-      xfbml      : true,
-      version    : 'v10.0'
-    });
-
-    FB.AppEvents.logPageView();
-
-  };
-
-  (function(d, s, id){
-     var js, fjs = d.getElementsByTagName(s)[0];
-     if (d.getElementById(id)) {return;}
-     js = d.createElement(s); js.id = id;
-     js.src = "https://connect.facebook.net/en_US/sdk.js";
-     fjs.parentNode.insertBefore(js, fjs);
-   }(document, 'script', 'facebook-jssdk'));
-</script>
-</head>
-<body>
-<div id="fb-root"></div>
-<!--<script async defer crossorigin="anonymous" src="https://connect.facebook.net/en_GB/sdk.js#xfbml=1&version=v10.0&appId=224826339443824&autoLogAppEvents=1" nonce="Uo2Mji7R"></script>-->
-<a href="{% url 'social:begin' 'vk-oauth2' %}">Enter VK</a>
-<!--<div class="fb-login-button" data-width="" data-size="large" data-button-type="continue_with" data-layout="default" data-auto-logout-link="false" data-use-continue-as="false"></div>-->
-<a href="{% url 'social:begin' 'facebook' %}">Facebook</a>
-<button class="btn btn-primary mb-2">
-            <a href="{% url 'social:begin' 'facebook' %}">Login with Facebook</a>
+{% extends 'social_auth/base.html' %}
+{% block title %} Sign in {% endblock %}
+{% block content %}
+<div class="row">
+    <div class="col-md-8 mx-auto social-container my-2 order-md-1">
+        <button class="btn btn-danger  mb-2">
+            <a href="#">Login with Vkontakte</a>
         </button>
-</body>
-</html>
+        <button class="btn btn-primary mb-2">
+            <a href="{% url 'social:begin' 'facebook' %}">Login with Facebook
+            </a>
+        </button>
+    </div>
+</div>
+</div>
+{% endblock %}
+<!--<!DOCTYPE html>-->
+<!--<html lang="en">-->
+<!--<head>-->
+<!--    <meta charset="UTF-8">-->
+<!--    <title>Title</title>-->
+<!--    <script>-->
+<!--  window.fbAsyncInit = function() {-->
+<!--    FB.init({-->
+<!--      appId      : '224826339443824',-->
+<!--      cookie     : true,-->
+<!--      xfbml      : true,-->
+<!--      version    : 'v10.0'-->
+<!--    });-->
+
+<!--    FB.AppEvents.logPageView();-->
+
+<!--  };-->
+
+<!--  (function(d, s, id){-->
+<!--     var js, fjs = d.getElementsByTagName(s)[0];-->
+<!--     if (d.getElementById(id)) {return;}-->
+<!--     js = d.createElement(s); js.id = id;-->
+<!--     js.src = "https://connect.facebook.net/en_US/sdk.js";-->
+<!--     fjs.parentNode.insertBefore(js, fjs);-->
+<!--   }(document, 'script', 'facebook-jssdk'));-->
+<!--</script>-->
+<!--    <script async defer crossorigin="anonymous" src="https://connect.facebook.net/en_GB/sdk.js#xfbml=1&version=v10.0&appId=224826339443824&autoLogAppEvents=1" nonce="Uo2Mji7R"></script>-->
+<!--</head>-->
+<!--<body>-->
+<!--<div id="fb-root"></div>-->
+<!--<a href="{% url 'social:begin' 'vk-oauth2' %}">Enter VK</a>-->
+<!--<div class="fb-login-button" data-width="" data-size="large" data-button-type="continue_with" data-layout="default" data-auto-logout-link="false" data-use-continue-as="false"></div>-->
+<!--<a href="{% url 'social:begin' 'facebook' %}">Facebook</a>-->
+<!--<button class="btn btn-primary mb-2">-->
+<!--            <a href="{% url 'social:begin' 'facebook' %}">Login with Facebook</a>-->
+<!--        </button>-->
+<!--</body>-->
+<!--</html>-->
+

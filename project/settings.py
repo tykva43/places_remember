@@ -94,7 +94,7 @@ WSGI_APPLICATION = 'project.wsgi.application'
 # Database
 # https://docs.djangoproject.com/en/3.2/ref/settings/#databases
 
-if env('DATABASE_URL'):
+if os.environ.get('DATABASE_URL'):
     DATABASES = {
         'default': dj_database_url.config(default=os.environ['DATABASE_URL'])
     }
@@ -123,13 +123,11 @@ else:
 
 SOCIAL_AUTH_REDIRECT_IS_HTTPS = True
 SOCIAL_AUTH_POSTGRES_JSONFIELD = True  # use the JSONB-field to store the extracted data
-
 # Password validation
 # https://docs.djangoproject.com/en/3.2/ref/settings/#auth-password-validators
 
 AUTHENTICATION_BACKENDS = (
     'social_core.backends.vk.VKOAuth2',  # backend for VK authentication
-    # 'social_auth.backends.contrib.vkontakte.VKontakteOAuth2Backend',
     'social_core.backends.facebook.FacebookOAuth2',  # backend for Facebook authentication
 )
 
@@ -162,8 +160,6 @@ LOGIN_URL = 'login'
 LOGIN_REDIRECT_URL = '/'
 LOGOUT_URL = 'logout'
 LOGOUT_REDIRECT_URL = 'login'
-SOCIAL_AUTH_FACEBOOK_KEY = '224826339443824'
-SOCIAL_AUTH_FACEBOOK_SECRET = '65832d2e4b31edae904a774627c7d041'
 
 # Internationalization
 # https://docs.djangoproject.com/en/3.2/topics/i18n/
@@ -183,14 +179,19 @@ USE_TZ = True
 
 STATIC_URL = '/static/'
 
+STATICFILES_DIRS = [
+    os.path.join(BASE_DIR, "static"),
+]
+
 # Default primary key field type
 # https://docs.djangoproject.com/en/3.2/ref/settings/#default-auto-field
 
 DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
 
 try:
-    from local_settings import *
+    from .local_settings import *
 except ImportError as e:
     ...
+
 
 
