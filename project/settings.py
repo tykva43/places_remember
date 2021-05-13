@@ -140,10 +140,10 @@ SOCIAL_AUTH_FACEBOOK_EXTRA_DATA = [
 
 SOCIAL_AUTH_VK_OAUTH2_SCOPE = ['email']
 SOCIAL_AUTH_VK_OAUTH2_PROFILE_EXTRA_PARAMS = {
-  'fields': 'id, screen_name, photo_max'
+  'fields': 'id, last_name, first_name, photo_max'
 }
 SOCIAL_AUTH_VK_OAUTH2_EXTRA_DATA = [
-    'screen_name', 'photo_max'
+    'last_name', 'first_name', 'photo_max'
 ]
 
 SOCIAL_AUTH_VK_OAUTH2_KEY = os.environ.get('SOCIAL_AUTH_VK_OAUTH2_KEY', '')
