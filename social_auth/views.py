@@ -1,7 +1,10 @@
-from django.http import HttpResponse
+from django.http import HttpResponseRedirect
 from django.shortcuts import render
+from django.urls import reverse_lazy
 
 
-# Create your views here.
-def index(request):
-    return render(request, 'social_auth/login.html')
+def login(request):
+    if not request.user.is_authenticated:
+        return render(request, 'social_auth/login.html')
+    else:
+        HttpResponseRedirect(reverse_lazy('home'))
