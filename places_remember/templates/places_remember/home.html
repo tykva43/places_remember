@@ -4,27 +4,27 @@
 {% block content %}
   <div class="row">
     <div class="col-sm-12 mb-3">
-      <h4 class="text-center">Welcome {{ user.username }}</h4>
+      <h4 class="text-center">Welcome to personal page</h4>
     </div>
 
     {% for assoc in backends.associated %}
       {% if assoc.provider == 'facebook' %}
         <div class="col-md-6 text-center">
-            <img src="{{assoc.extra_data.picture.data.url}}" alt="" width="150" height="150" style="border-radius: 50%">
+            <img src="{{ assoc.extra_data.picture.data.url }}" alt="" width="150" height="150" style="border-radius: 50%">
         </div>
         <div class="col-md-6 social-container my-2">
             <p> Name:  {{ assoc.extra_data.name }} </p>
         </div>
       {% endif %}
 
-<!--      {% if assoc.provider == 'vk-oauth2' %}-->
-<!--        <div class="col-md-6 text-center">-->
-<!--            <img src="{{assoc.extra_data.picture.data.url}}" alt="" width="150" height="150" style="border-radius: 50%">-->
-<!--        </div>-->
-<!--        <div class="col-md-6 social-container my-2">-->
-<!--            <p> Name:  {{ assoc.extra_data.name }} </p>-->
-<!--        </div>-->
-<!--      {% endif %}-->
+      {% if assoc.provider == 'vk-oauth2' %}
+        <div class="col-md-6 text-center">
+            <img src="{{ assoc.extra_data.photo_max }}" alt="" width="150" height="150" style="border-radius: 50%">
+        </div>
+        <div class="col-md-6 social-container my-2">
+            <p> Name: {{ assoc.extra_data.first_name }} {{ assoc.extra_data.last_name }} </p>
+        </div>
+      {% endif %}
     {% endfor %}
     <div class="col-sm-12 mt-2 text-center">
       <button class="btn btn-danger">
