@@ -7,4 +7,4 @@ def login(request):
     if not request.user.is_authenticated:
         return render(request, 'social_auth/login.html')
     else:
-        HttpResponseRedirect(reverse_lazy('home'))
+        return HttpResponseRedirect(reverse_lazy('home'))
