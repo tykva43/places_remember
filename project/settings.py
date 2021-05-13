@@ -134,10 +134,13 @@ SOCIAL_AUTH_FACEBOOK_SCOPE = ['user_link']
 SOCIAL_AUTH_FACEBOOK_PROFILE_EXTRA_PARAMS = {
   'fields': 'id, name, picture.type(large)'
 }
-SOCIAL_AUTH_FACEBOOK_EXTRA_DATA = [
-    ('name', 'name'),
-    ('picture', 'picture'),
-]
+# SOCIAL_AUTH_FACEBOOK_EXTRA_DATA = [
+#     ('name', 'name'),
+#     ('picture', 'picture'),
+# ]
+SOCIAL_AUTH_VK_OAUTH2_PROFILE_EXTRA_PARAMS = {
+  'fields': 'id, screen_name, photo_max'
+}
 SOCIAL_AUTH_VK_OAUTH2_KEY = os.environ.get('SOCIAL_AUTH_VK_OAUTH2_KEY', '')
 SOCIAL_AUTH_VK_OAUTH2_SECRET = os.environ.get('SOCIAL_AUTH_VK_OAUTH2_SECRET', '')
 SOCIAL_AUTH_FACEBOOK_KEY = os.environ.get('SOCIAL_AUTH_FACEBOOK_KEY', '')
