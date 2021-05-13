@@ -4,12 +4,12 @@
 {% block content %}
 <div class="row">
     <div class="col-md-8 mx-auto social-container my-2 order-md-1">
-        <button class="btn btn-danger  mb-2">
+        <p style="text-align: center">Welcome to Places-Remember. This service allows you to store your impressions of the places you visited.</p>
+        <button id="vk_btn" class="btn btn-primary  mb-2">
             <a href="{% url 'social:begin' 'vk-oauth2' %}">Login with Vkontakte</a>
         </button>
-        <button class="btn btn-primary mb-2">
-            <a href="{% url 'social:begin' 'facebook' %}">Login with Facebook
-            </a>
+        <button id="fb_btn" class="btn btn-primary mb-2">
+            <a href="{% url 'social:begin' 'facebook' %}">Login with Facebook</a>
         </button>
     </div>
 </div>

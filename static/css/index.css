@@ -23,5 +23,14 @@ img {
 }
 .btn a, .btn a:hover {
   color: white;
-  text-decoration: none ;
+  text-decoration: none;
+  display: block;
+}
+#fb_btn {
+    background-color: #3b5998;
+    border-color: #3b5998;
+}
+#vk_btn {
+    background-color: #4d7198;
+    border-color: #4d7198;
 }
