@@ -1,9 +1,11 @@
 img {
   border: 3px solid #282c34;
 }
+#dark-container {
+  background-color: #282c34;
+}
 .container-fluid {
   height: 100vh;
-  background-color: #282c34;
   display: flex;
   justify-content: center;
   align-items: center;
@@ -33,4 +35,19 @@ img {
 #vk_btn {
     background-color: #4d7198;
     border-color: #4d7198;
+}
+#header, #places-div {
+    padding: 20px;
+    border-radius: 5px;
+    background-color: white;
+}
+#places-div {
+    min-height: 100%;
+    min-height: 60vh;
+}
+.space-15 {
+    margin: 15px;
+}
+#header {
+    display: flex;
 }

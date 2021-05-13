@@ -1,4 +1,5 @@
 from django.contrib.auth.decorators import login_required
+from django.http import HttpResponse
 from django.shortcuts import render
 
 
@@ -9,3 +10,8 @@ def home(request):
 
 def privacy(request):
     return render(request, 'places_remember/privacy-policy.html')
+
+
+@login_required
+def add_memo(request):
+    return HttpResponse('aaaa')

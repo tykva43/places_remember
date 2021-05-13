@@ -1,15 +1,15 @@
 {% extends 'social_auth/base.html' %}
-{% block head_title %}Social Auth{% endblock %}
-{% block title %} Sign in {% endblock %}
+{% block head_title %}Вход{% endblock %}
+{% block title %}Войти{% endblock %}
 {% block content %}
 <div class="row">
     <div class="col-md-8 mx-auto social-container my-2 order-md-1">
-        <p style="text-align: center">Welcome to Places-Remember. This service allows you to store your impressions of the places you visited.</p>
+        <p style="text-align: center">Добро пожаловать в Places Remember. Этот сервис позволяет сохранять впечатления от посещенных вами мест.</p>
         <button id="vk_btn" class="btn btn-primary  mb-2">
-            <a href="{% url 'social:begin' 'vk-oauth2' %}">Login with Vkontakte</a>
+            <a href="{% url 'social:begin' 'vk-oauth2' %}">Войти через Вконтакте</a>
         </button>
         <button id="fb_btn" class="btn btn-primary mb-2">
-            <a href="{% url 'social:begin' 'facebook' %}">Login with Facebook</a>
+            <a href="{% url 'social:begin' 'facebook' %}">Войти через Facebook</a>
         </button>
     </div>
 </div>

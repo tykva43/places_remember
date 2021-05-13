@@ -24,4 +24,5 @@ urlpatterns = [
     path('privacy/', views.privacy, name='privacy'),
     path('', views.home, name='home'),
     path('admin/', admin.site.urls),
+    path('memory/add/', views.add_memo, name='add_memo'),
 ]
