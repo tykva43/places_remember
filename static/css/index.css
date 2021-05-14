@@ -75,3 +75,6 @@ span.min-logout {
         display: none;
     }
 }
+#div-logout {
+    margin: auto;
+}
