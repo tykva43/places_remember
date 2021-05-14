@@ -39,7 +39,7 @@
                 <img src="{{ assoc.extra_data.picture.data.url }}" alt="" width="150" height="150" style="border-radius: 50%">
             </div>
             <div class="col-9 social-container">
-                <p> {{ assoc.extra_data.name }} </p>
+                <p style="margin: auto;"> {{ assoc.extra_data.name }} </p>
             </div>
         {% endif %}
 
@@ -47,14 +47,14 @@
             <div class="col-2 text-center">
                 <img src="{{ assoc.extra_data.photo_max }}" alt="" width="150" height="150" style="border-radius: 50%">
             </div>
-            <div class="col-9 social-container">
-                <p> {{ assoc.extra_data.first_name }} {{ assoc.extra_data.last_name }} </p>
+            <div class="col-8 social-container">
+                <p style="margin: auto;"> {{ assoc.extra_data.first_name }} {{ assoc.extra_data.last_name }} </p>
             </div>
         {% endif %}
     {% endfor %}
-        <div class="col-1">
+        <div class="col-2">
             <button class="btn btn-danger">
-                <a href="{% url 'logout' %}">Выйти</a>
+                <a href="{% url 'logout' %}"><span class="logout">Выйти</span><span class="min-logout"></span></a>
             </button>
         </div>
 </div>

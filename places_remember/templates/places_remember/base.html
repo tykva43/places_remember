@@ -9,6 +9,15 @@
         crossorigin="anonymous" />
     <link rel="stylesheet" type="text/css" href="{% static 'css/index.css' %}" />
     <title>Places Remember - {% block head_title %}{% endblock %}</title>
+    <style>
+        span.min-logout {
+            background: url({% static 'imgs/logout.svg' %}) no-repeat top left;
+            background-size: contain;
+            width: 18px;
+            height: 18px;
+            margin: auto;
+        }
+    </style>
 </head>
 <body style="background-color: #282c34">
     <div class="container" id="home-container">

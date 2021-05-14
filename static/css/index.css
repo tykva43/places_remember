@@ -1,5 +1,9 @@
 img {
-  border: 3px solid #282c34;
+    border-radius: 50%;
+    width: inherit;
+    height: inherit;
+    min-width: 40px;
+    min-height: 40px;
 }
 #dark-container {
   background-color: #282c34;
@@ -22,6 +26,7 @@ img {
   display: flex;
   flex-direction: column;
   justify-content: center;
+  margin: auto;
 }
 .btn a, .btn a:hover {
   color: white;
@@ -50,4 +55,23 @@ img {
 }
 #header {
     display: flex;
+}
+span.min-logout {
+    display: none;
+}
+@media screen and (min-width: 500px) {
+    span.min-logout {
+        display: none;
+    }
+    span.logout {
+        display: block;
+    }
+}
+@media screen and (max-width: 500px) {
+    span.min-logout {
+        display: block;
+    }
+    span.logout {
+        display: none;
+    }
 }
