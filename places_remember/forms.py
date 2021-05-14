@@ -10,3 +10,9 @@ class MemoForm(ModelForm):
             'commentary': Textarea(),
         }
         exclude = ['user']
+
+        labels = {
+            "place": "Посещенное место",
+            "name": "Название места",
+            "commentary": "Ваш комметарий об этом месте"
+        }

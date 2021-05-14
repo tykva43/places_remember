@@ -24,7 +24,8 @@ def add_memo(request):
         return render(request, 'places_remember/add_memo.html', {'form': form})
     elif request.method == 'POST':
         form = MemoForm(request.POST)
-        new_memo = form.save(commit=False)
-        new_memo.user_id = request.user.id
-        new_memo.save()
+        if form.is_valid():
+            new_memo = form.save(commit=False)
+            new_memo.user_id = request.user.id
+            new_memo.save()
         return HttpResponseRedirect(reverse('home'))
