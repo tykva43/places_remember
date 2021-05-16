@@ -4,11 +4,11 @@
 <div class="row align-items-start" id="header">
     {% for assoc in backends.associated %}
         {% if assoc.provider == 'facebook' %}
-            <div class="col-2 text-center">photo
+            <div class="col-2 text-center">
                 <img src="{{ assoc.extra_data.picture.data.url }}" alt="" width="150" height="150" style="border-radius: 50%">
             </div>
             <div class="col-8 social-container">
-                <p style="margin-top: auto; margin-block: auto;"> name{{ assoc.extra_data.name }} </p>
+                <p style="margin-top: auto; margin-block: auto;"> {{ assoc.extra_data.name }} </p>
             </div>
         {% endif %}
 
