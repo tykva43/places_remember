@@ -72,10 +72,10 @@ function init(){
         var markerLayer = map.getLayers().getArray()[1]; // Take the second map layer (the first one is origin substrate)
         markerLayer.setSource(marker); // Set the marker to the second layer
 
-        map.getView().animate({
+        /*map.getView().animate({
             center: coordinates,
             duration: 1500,
-        })
+        })*/
 
         // Get geocoding data from Nominatim API
         var url = `https://nominatim.openstreetmap.org/reverse?lat=${coordinates[1]}&lon=${coordinates[0]}&format=geojson&accept-language=ru-RU`
