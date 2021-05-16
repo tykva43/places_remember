@@ -37,7 +37,7 @@ SECRET_KEY = env.str('DJANGO_SECRET_KEY')
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = env.bool('DJANGO_DEBUG')
 
-ALLOWED_HOSTS = env('DJANGO_ALLOWED_HOSTS').split()
+ALLOWED_HOSTS = os.environ.get('DJANGO_ALLOWED_HOSTS').split()
 
 # Application definition
 INSTALLED_APPS = [
@@ -95,26 +95,26 @@ if os.environ.get('DATABASE_URL'):
     DATABASES = {
         'default': dj_database_url.config(default=os.environ['DATABASE_URL'])
     }
-elif env.int('DOCKER_WORKFLOW'):
+elif os.environ.get('DOCKER_WORKFLOW'):
     DATABASES = {
         'default': {
             'ENGINE': 'django.db.backends.postgresql',
-            'NAME': env('DOCKER_POSTGRES_DB'),
-            'HOST': env('DOCKER_POSTGRES_HOST'),
-            'PORT': env('DOCKER_POSTGRES_PORT'),
-            'USER': env('DOCKER_POSTGRES_USER'),
-            'PASSWORD': env('DOCKER_POSTGRES_PASSWORD'),
+            'NAME': os.environ.get('DOCKER_POSTGRES_DB'),
+            'HOST': os.environ.get('DOCKER_POSTGRES_HOST'),
+            'PORT': os.environ.get('DOCKER_POSTGRES_PORT'),
+            'USER': os.environ.get('DOCKER_POSTGRES_USER'),
+            'PASSWORD': os.environ.get('DOCKER_POSTGRES_PASSWORD'),
         }
     }
 else:
     DATABASES = {
         'default': {
             'ENGINE': 'django.db.backends.postgresql',
-            'NAME': env('POSTGRES_DB'),
-            'HOST': env('POSTGRES_HOST'),
-            'PORT': env('POSTGRES_PORT'),
-            'USER': env('POSTGRES_USER'),
-            'PASSWORD': env('POSTGRES_PASSWORD'),
+            'NAME': os.environ.get('POSTGRES_DB'),
+            'HOST': os.environ.get('POSTGRES_HOST'),
+            'PORT': os.environ.get('POSTGRES_PORT'),
+            'USER': os.environ.get('POSTGRES_USER'),
+            'PASSWORD': os.environ.get('POSTGRES_PASSWORD'),
         }
     }
 
