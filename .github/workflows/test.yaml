@@ -5,13 +5,22 @@ on: [push]
 jobs:
   health-check-job:
     runs-on: ubuntu-latest
+    env:
+      DJANGO_SECRET_KEY: some-unsecret-key
+      DJANGO_DEBUG: True
+      POSTGRES_DB: postgres
+      POSTGRES_USER: postgres
+      POSTGRES_PASSWORD: postgres
+      POSTGRES_HOST: localhost
+      POSTGRES_PORT: 5432
+      DJANGO_ALLOWED_HOSTS: '*'
     services:
       postgres:
-        image: postgres
-        env: 
+        env:
+          POSTGRES_DB: postgres
           POSTGRES_USER: postgres
           POSTGRES_PASSWORD: postgres
-          POSTGRES_DB: postgres
+        image: postgres
         ports:
           - 5432:5432 
     steps:
@@ -24,15 +33,6 @@ jobs:
     - name: Install requirements
       run: pip install -r requirements.txt
     - name: Migrate
-      env:
-        DJANGO_SECRET_KEY: some-unsecret-key
-        DJANGO_DEBUG: True
-        POSTGRES_DB: postgres
-        POSTGRES_USER: postgres
-        POSTGRES_PASSWORD: postgres
-        POSTGRES_HOST: localhost
-        POSTGRES_PORT: 5432
-        DJANGO_ALLOWED_HOSTS: '*'
       run: python manage.py migrate
     - name: Collect staticfiles
       run: python manage.py collectstatic
@@ -55,3 +55,4 @@ jobs:
         coveralls --finish
       env:
         GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+
