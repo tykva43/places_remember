@@ -1,64 +1,29 @@
 {% extends 'places_remember/base.html' %}
+{% load static %}
 {% block head_title %}Добавление воспоминания{% endblock %}
 {% block html_head %}
-<!--    <script src="https://maps.api.2gis.ru/2.0/loader.js?pkg=full"></script>-->
-<!--        <script type="text/javascript">-->
-<!--            var map;-->
-
-<!--            DG.then(function () {-->
-<!--                map = DG.map('map', {-->
-<!--                    center: [54.98, 82.89],-->
-<!--                    zoom: 13-->
-<!--                });-->
-
-<!--                DG.marker([54.98, 82.89]).addTo(map).bindPopup('Вы кликнули по мне!');-->
-<!--            });-->
-<!--        </script>-->
-<!--<link rel="stylesheet" href="https://maps-js.apissputnik.ru/v0.3/sputnik_maps_bundle.min.css" />-->
-<!--<script src="https://maps-js.apissputnik.ru/v0.3/sputnik_maps_bundle.min.js"></script>-->
-<!--<style type="text/css">#map1 { height: 400px; }</style>-->
-<!--<script>-->
-<!--L.sm.apiKey = '<Ваш API-ключ>';-->
-<!--var map = L.sm.map('map1');-->
-<!--</script>-->
-<script src='https://api.mapbox.com/mapbox-gl-js/v2.2.0/mapbox-gl.js'></script>
-<link href='https://api.mapbox.com/mapbox-gl-js/v2.2.0/mapbox-gl.css' rel='stylesheet' />
+  <link rel="stylesheet" type="text/css" href="{% static 'css/openlayers.css' %}"/>
+  <script src="{% static 'js/map.js' %}"></script>
+  <script src="{% static 'js/jquery-1.12.4.js' %}"></script>
+  <script src="{% static 'js/openlayers.js' %}"></script>
 {% endblock %}
 
 {% block content %}
-<div class="row align-items-start" style="background-color: white; border-radius: 5px; padding: 15px;">
-<!--    <div id="map1"></div>-->
-<!--    <div id='map' style='width: 400px; height: 300px;'></div>-->
+  <div class="row align-items-start" style="background-color: white; border-radius: 5px; padding: 15px;">
+      <!--Map-->
+      <div class="col-12">
+          <div id="map" style="height: 90vh;"></div>
+          <div id="mouse-position"></div>
+      </div>
 
-<div id='map' style='width: 400px; height: 300px;'></div>
-<script>
-mapboxgl.accessToken = 'pk.eyJ1IjoidHlrdmE0MyIsImEiOiJja29vNG9tbjMwNjA5Mm9zejI4eGZqMTdiIn0.OAW8d1Ijiczodf8itNYzuw';
-var map = new mapboxgl.Map({
-    container: 'map', // container ID
-    style: 'mapbox://styles/mapbox/streets-v11', // style URL
-    center: [-74.5, 40], // starting position [lng, lat]
-    zoom: 9 // starting zoom
-});
-</script>
-<!--    <div id="map" style="width:500px; height:400px"></div>-->
-<!--    <script type="text/javascript" src="//maps-js.apissputnik.ru/v0.3/loader.js?1p6bWaQBwRA8"></script>-->
-<!--    <iframe-->
-<!--  width="600"-->
-<!--  height="450"-->
-<!--  style="border:0"-->
-<!--  loading="lazy"-->
-<!--  allowfullscreen-->
-<!--  src="https://www.google.com/maps/embed/v1/place?key=AIzaSyC5Jqztb3BNtK-9scXllDFE4ts4H6DCqnc-->
-<!--    &q=Space+Needle,Seattle+WA">-->
-<!--</iframe>-->
-    <div class="row">
-    <form method="post" action="{% url 'add_memo' %}">
-        {% csrf_token %}
-        <table>
-            <tbody>{{ form.as_p }}</tbody>
-        </table>
-        <button type="submit" class="btn btn-primary">Сохранить</button>
-    </form>
-        </div>
-</div>
+      <div class="col-12">
+          <form method="post" action="{% url 'add_memo' %}">
+              {% csrf_token %}
+              <table>
+                  <tbody>{{ form.as_p }}</tbody>
+              </table>
+              <button type="submit" class="btn btn-primary">Сохранить</button>
+          </form>
+      </div>
+  </div>
 {% endblock %}
