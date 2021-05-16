@@ -6,16 +6,14 @@ jobs:
   health-check-job:
     runs-on: ubuntu-latest
     services:
-      postgres: # we need a postgres docker image to be booted a side car service to run the tests that needs a db
+      postgres:
         image: postgres
-        env: # the environment variable must match with app/settings.py if block of DATBASES variable otherwise test will fail due to connectivity issue.
+        env: 
           POSTGRES_USER: postgres
           POSTGRES_PASSWORD: postgres
           POSTGRES_DB: postgres
         ports:
-          - 5432:5432 # exposing 5432 port for application to use
-        # needed because the postgres container does not provide a healthcheck
-        options: --health-cmd pg_isready --health-interval 10s --health-timeout 5s --health-retries 5
+          - 5432:5432 
     steps:
     - name: Checkout code
       uses: actions/checkout@v2
@@ -26,6 +24,15 @@ jobs:
     - name: Install requirements
       run: pip install -r requirements.txt
     - name: Migrate
+      env:
+        DJANGO_SECRET_KEY: some-unsecret-key
+        DJANGO_DEBUG: True
+        POSTGRES_DB: postgres
+        POSTGRES_USER: postgres
+        POSTGRES_PASSWORD: postgres
+        POSTGRES_HOST: localhost
+        POSTGRES_PORT: 5432
+        DJANGO_ALLOWED_HOSTS: '*'
       run: python manage.py migrate
     - name: Collect staticfiles
       run: python manage.py collectstatic
