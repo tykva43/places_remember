@@ -78,3 +78,9 @@ span.min-logout {
 #div-logout {
     margin: auto;
 }
+input, textarea {
+    width: 100%;
+}
+form {
+    margin-top: 20px;
+}

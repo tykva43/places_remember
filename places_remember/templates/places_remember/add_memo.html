@@ -2,27 +2,27 @@
 {% load static %}
 {% block head_title %}Добавление воспоминания{% endblock %}
 {% block html_head %}
-  <link rel="stylesheet" type="text/css" href="{% static 'css/openlayers.css' %}"/>
+  <link rel="stylesheet" type="text/css" href="{% static 'css/ol.css' %}"/>
   <script src="{% static 'js/map.js' %}"></script>
   <script src="{% static 'js/jquery-1.12.4.js' %}"></script>
-  <script src="{% static 'js/openlayers.js' %}"></script>
+  <script src="{% static 'js/ol.js' %}"></script>
 {% endblock %}
 
 {% block content %}
   <div class="row align-items-start" style="background-color: white; border-radius: 5px; padding: 15px;">
       <!--Map-->
-      <div class="col-12">
-          <div id="map" style="height: 90vh;"></div>
+      <div class="col-md-9" style="margin: auto">
+          <div id="map"></div>
           <div id="mouse-position"></div>
       </div>
-
-      <div class="col-12">
+      <div class="w-100"></div>
+      <div class="col-md-9" style="margin: auto">
           <form method="post" action="{% url 'add_memo' %}">
               {% csrf_token %}
               <table>
                   <tbody>{{ form.as_p }}</tbody>
               </table>
-              <button type="submit" class="btn btn-primary">Сохранить</button>
+              <button type="submit" style="display: block; margin: auto;" class="btn btn-primary">Сохранить</button>
           </form>
       </div>
   </div>

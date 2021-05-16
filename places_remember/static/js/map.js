@@ -2,8 +2,12 @@ function getPlace(placeObj) {
     var str ='';
     if (placeObj.country)
         str += placeObj.country;
+    if (placeObj.state)
+        str += ', ' + placeObj.state;
     if (placeObj.city)
         str += ', ' + placeObj.city;
+    if (placeObj.town)
+        str += ', ' + placeObj.town;
     if (placeObj.road)
         str += ', ' + placeObj.road;
     if (placeObj.house_number)
@@ -29,13 +33,13 @@ function init(){
 
     var osm = new ol.layer.Tile({
         title: 'OSM',
-        /*source: new ol.source.OSM(
+        source: new ol.source.OSM(
         {
             attributions: ['<a href="https://www.openstreetmap.org" target="_blank">OpenstreetMap</a> OpenstreetMap']
-        })*/
-        source: new ol.source.XYZ({
-            url: "http://tile2.maps.2gis.com/tiles?x={x}&y={y}&z={z}&v=1.1"
         })
+        /*source: new ol.source.XYZ({
+            url: "http://tile2.maps.2gis.com/tiles?x={x}&y={y}&z={z}&v=1.1"
+        })*/
     });
     map.addLayer(osm);
 
@@ -64,10 +68,13 @@ function init(){
             ]
         })
 
-//        map.getView().setCenter(coordinates);
-
         var markerLayer = map.getLayers().getArray()[1]; // Take the second map layer (the first one is origin substrate)
         markerLayer.setSource(marker); // Set the marker to the second layer
+
+        map.getView().animate({
+            center: coordinates,
+            duration: 1500,
+        })
 
         // Get geocoding data from Nominatim API
         var url = `https://nominatim.openstreetmap.org/reverse?lat=${coordinates[1]}&lon=${coordinates[0]}&format=geojson&accept-language=ru-RU`
@@ -75,8 +82,8 @@ function init(){
             url: url,
             success: function(data) {
                 var placeStr = getPlace(data.features[0].properties.address);
-                console.log(placeStr)
                 $('#id_place').attr('value', placeStr);
+                console.log(placeStr)
             }
         });
     });
