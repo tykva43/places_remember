@@ -29,9 +29,15 @@
 </div>
 <div class="space-15"></div>
 <div class="row align-items-center" id="places-div">
+    <div></div>
     <div class="col-12 text-center">
         {% for memo in memories %}
-            {{ memo.name }}
+            <div style="padding: 10px">
+                <div class="m-title"><div class="m-name">{{ memo.name }}</div>
+                <div class="m-place">{{ memo.place }}</div>
+                </div>
+                <div class="m-commentary"><textarea readonly style="resize: none; background-color: white; border-style: none;">{{memo.commentary}}</textarea></div>
+            </div>
         {% empty %}
             У вас нет ни одного воспоминания
         {% endfor %}

@@ -84,3 +84,23 @@ input, textarea {
 form {
     margin-top: 20px;
 }
+.m-title {
+    background-color: #7e8f9f70;
+    border-radius: 5px;
+}
+.m-name {
+    font-weight: bold;
+    font-size: larger;
+}
+.m-place {
+    font-size: smaller;
+    font-style: italic;
+    color: #505051;
+}
+.m-commentary {
+    border-radius: 5px;
+    border-width: thin;
+    border-color: #7e8f9f70;
+    border-style: solid;
+    padding: 10px;
+}

@@ -28,7 +28,7 @@ jobs:
     - name: Migrate
       run: python manage.py migrate
     - name: Run test
-      run: coverage run --source='.' manage.py test testapp
+      run: coverage run --source='.' manage.py test
     - name: Upload coverage data to coveralls.io
       run: coveralls --service=github
       env:

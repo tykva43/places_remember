@@ -24,6 +24,7 @@ function init(){
             projection: 'EPSG:4326',
             center: [92.8720,56.0105], // Center in Krasnoyarsk
             zoom: 3,                  // Initial zoom
+            minZoom: 2,
         }),
         controls:[
             new ol.control.Zoom(),
@@ -83,7 +84,6 @@ function init(){
             success: function(data) {
                 var placeStr = getPlace(data.features[0].properties.address);
                 $('#id_place').attr('value', placeStr);
-                console.log(placeStr)
             }
         });
     });

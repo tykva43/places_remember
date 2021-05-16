@@ -72,7 +72,7 @@ db.sqlite3
 .python-version
 
 # Environments
-.env
+.env.*
 .venv
 env/
 venv/

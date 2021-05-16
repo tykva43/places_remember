@@ -21,6 +21,7 @@ def privacy(request):
 def add_memo(request):
     if request.method == 'GET':
         form = MemoForm()
+        form.fields['place'].widget.attrs['readonly'] = True
         return render(request, 'places_remember/add_memo.html', {'form': form})
     elif request.method == 'POST':
         form = MemoForm(request.POST)
